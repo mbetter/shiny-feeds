@@ -1,0 +1,16 @@
+$def with (posts)
+<html>
+  <head>
+    <title>perioddot.org</title>
+    <link href="./static/base.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+   $for postrow in posts:
+       <div class="post" id="t$postrow.id">
+       <h1 class="post-header">$postrow.title</h1>
+       <div class="post-body">$:markdown(postrow.post) </div>
+       </div>
+       </div>
+  </body>
+</html>
+
