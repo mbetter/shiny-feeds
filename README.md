@@ -1,13 +1,15 @@
+#Shiny Feeds
+
 Shiny Feeds is an XMPP (Jabber, GChat, etc) based microblogging platform All posting and editing 
 is done through commands sent to an XMPP chat bot.
 
-INSTALLING:
+##INSTALLING:
 
 Copy settings.example.py to settings.py and modify appropriately. Run xmpp-listener.py, which 
 does the actual XMPP work (you might need to open port 5222 in your router settings). Run 
 shiny.py to use web.py debug web server or setup as a WSGI application.
 
-USAGE: 
+##USAGE: 
 
 A shiny feeds command consists of a single character (case-insensitive) followed by a 
 space-separated list of parameters. You only need to know a few commands to use shiny feeds effectively:
