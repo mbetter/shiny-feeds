@@ -5,7 +5,8 @@ is done through commands sent to an XMPP chat bot.
 
 ##INSTALLING:
 
-Copy settings.example.py to settings.py and modify appropriately. Run xmpp-listener.py, which 
+Copy settings.example.py to settings.py and modify appropriately. Currently, you will have to add the
+database with table to your database, this will be done automatically soon. Run xmpp-listener.py, which 
 does the actual XMPP work (you might need to open port 5222 in your router settings). Run 
 shiny.py to use web.py debug web server or setup as a WSGI application.
 
