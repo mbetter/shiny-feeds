@@ -3,7 +3,7 @@
 Shiny Feeds is an XMPP (Jabber, GChat, etc) based microblogging platform All posting and editing 
 is done through commands sent to an XMPP chat bot.
 
-Check it out live at [http://shinylinks.com] (http://shinylinks.com)
+Check it out live at [http://shinyfeeds.com] (http://shinyfeeds.com).
 
 ##INSTALLING:
 
