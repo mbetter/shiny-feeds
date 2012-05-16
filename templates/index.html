@@ -5,12 +5,12 @@ $def with (posts)
     <link href="./static/hollow.css" type="text/css" rel="stylesheet">
   </head>
   <body>
-	<h1 id="logo">Shiny Feeds</h1>
+	<h1 id="logo"><a href="/">Shiny Feeds</a></h1>
    $for postrow in posts:
        <div class="post" id="t$postrow.id">
        <h1 class="post-header">$postrow.title</h1>
        <div class="post-body">$:markdown(postrow.post) </div>
-       <span class="post-info">Posted by $postrow.page, $:datestr(postrow.time)</span>
+       <span class="post-info">Posted by <a href="./$postrow.page">$postrow.page</a>, $:datestr(postrow.time)</span>
        </div>
   </body>
 </html>
