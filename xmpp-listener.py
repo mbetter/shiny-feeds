@@ -31,10 +31,9 @@ class PostBot(sleekxmpp.ClientXMPP):
         cmd = tokens[0].lower()
         user_jid = msg['from'].jid.partition('/')[0]
         current = user_record.current_post
-        page_name = user_record.page
  
         if cmd == "n":
-            n = self.db.insert('posts', title=tokens[2], page=page_name)
+            n = self.db.insert('posts', title=tokens[2], page=user_record.page, jid=user_record.jid)
             self.db.update('users', where="jid = '%s'" % user_jid, current_post = n)
             msg.reply('Added post #%d.' % n).send()
         elif cmd == "t":
