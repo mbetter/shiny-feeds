@@ -18,6 +18,7 @@ else:
     raw_input = input
 
 t_globals = {
+    'datestr': web.datestr,
     'markdown': markdown.markdown,
 }
 render = web.template.render(os.path.join(curdir,'templates'), globals=t_globals)

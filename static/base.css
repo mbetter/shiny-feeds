@@ -9,6 +9,16 @@ body {
   width: 50%;
   
 }
+.post-info {
+    background: none repeat scroll 0 0 #EEE;
+    display: block;
+    border-width: 0px 2px 0px 2px;
+    border-style: solid;
+    border-color: #CCC;
+    padding-right: 5px;
+    color: #666;
+    text-align: right;
+}
 .post-body {
     background: none repeat scroll 0 0 #EEE;
     margin-top: 0px;
@@ -42,5 +52,6 @@ body {
     padding-left: 13px;
     margin-bottom: 0px
 }
+
 
 
