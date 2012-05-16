@@ -26,11 +26,16 @@ db = web.database(host=settings.db_host, dbn=settings.db_dbn, user=settings.db_u
 
 urls = (
     '/', 'index'
+    '/(.*)', 'page'
 )
 
 class index:
     def GET(self):
         todos = db.select('posts')
+        return render.index(todos)
+class page:
+    def GET(self,pagename):
+        todos = db.select('posts', where="page='%s'" % pagename)
         return render.index(todos)
 
 app = web.application(urls, globals(), autoreload=False)
