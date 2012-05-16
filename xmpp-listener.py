@@ -26,11 +26,16 @@ class PostBot(sleekxmpp.ClientXMPP):
     def start(self, event):
         self.send_presence()
         self.get_roster()
-    def parse_message(self, msg):
+    def parse_message(self, msg, user_record):
         tokens = msg['body'].partition(" ")
         cmd = tokens[0].lower()
+        user_jid = msg['from'].jid.partition('/')[0]
+        current = user_record.current_post
+        page_name = user_record.page
+ 
         if cmd == "n":
-            n = self.db.insert('posts', title=tokens[2])
+            n = self.db.insert('posts', title=tokens[2], page=page_name)
+            self.db.update('users', where="jid = '%s'" % user_jid, current_post = n)
             msg.reply('Added post #%d.' % n).send()
         elif cmd == "t":
             params = tokens[2].partition(" ")
@@ -53,6 +58,20 @@ class PostBot(sleekxmpp.ClientXMPP):
                     msg.reply('Post #%d not found.' % i).send()
             except ValueError:
                 msg.reply('Invalid post id.').send()
+        elif cmd == ">":
+		p = db.select('posts',where='id = %d' % current).list()
+		if p:
+		    db.update('posts', where="id = %d" % current, post=p[0].post + '\n\n' + tokens[2])
+		    msg.reply('Updated post #%d.' % current).send()
+		else:
+		    msg.reply('Post #%d not found.' % current).send()
+        elif cmd == "\\":
+		p = db.select('posts',where='id = %d' % current).list()
+		if p:
+		    db.update('posts', where="id = %d" % current, post=p[0].post + '\n' + tokens[2])
+		    msg.reply('Updated post #%d.' % current).send()
+		else:
+		    msg.reply('Post #%d not found.' % current).send()
         elif cmd == "a":
             params = tokens[2].partition(" ")
             try:
@@ -94,11 +113,20 @@ class PostBot(sleekxmpp.ClientXMPP):
 
     def message(self, msg):
         if msg['type'] in ('chat', 'normal'):
-	    # print(msg['from'].jid)
-	    # print(msg['from'].jid.partition('/')[0] in self.user)
-	    print(msg['body']) 
-            if msg['from'].jid.partition('/')[0] in self.user:
-                self.parse_message(msg)
+            # print(msg['from'].jid)
+            # print(msg['from'].jid.partition('/')[0] in self.user)
+            user_jid = msg['from'].jid.partition('/')[0]
+            user_dbrow = self.db.select('users',where="jid ='%s'" % user_jid).list()
+            if user_dbrow:
+                user_record = user_dbrow[0]
+            else:
+                self.db.insert('users', jid=user_jid, current_post=0, page=user_jid)
+                user_record.jid = user_jid
+                user_record.current_post=0
+                user_record.page = user_jid
+            print(msg['body']) 
+            print(user_record.page)
+            self.parse_message(msg,user_record)
 
 
 db = web.database(host=settings.db_host, dbn=settings.db_dbn, user=settings.db_user, pw=settings.db_password, db=settings.db_database)
