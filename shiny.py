@@ -25,7 +25,7 @@ render = web.template.render(os.path.join(curdir,'templates'), globals=t_globals
 db = web.database(host=settings.db_host, dbn=settings.db_dbn, user=settings.db_user, pw=settings.db_password, db=settings.db_database)
 
 urls = (
-    '/', 'index'
+    '/', 'index',
     '/(.*)', 'page'
 )
 
