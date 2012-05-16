@@ -32,12 +32,12 @@ urls = (
 
 class index:
     def GET(self):
-        todos = db.select('posts')
-        return render.index(todos)
+        posts = db.select('posts',order="time DESC")
+        return render.index(posts)
 class page:
     def GET(self,pagename):
-        todos = db.select('posts', where="page='%s'" % pagename)
-        return render.index(todos)
+        posts = db.select('posts', where="page='%s'" % pagename, order="time DESC")
+        return render.index(posts)
 
 app = web.application(urls, globals(), autoreload=False)
 application = app.wsgifunc()
