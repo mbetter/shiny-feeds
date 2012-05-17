@@ -17,9 +17,13 @@ if sys.version_info < (3, 0):
 else:
     raw_input = input
 
+
 t_globals = {
     'datestr': web.datestr,
-    'markdown': markdown.markdown,
+    'markdown': markdown.Markdown(
+                    extensions=[],
+                    safe_mode="escape"
+                    ).convert,
 }
 render = web.template.render(os.path.join(curdir,'templates'), globals=t_globals)
 
