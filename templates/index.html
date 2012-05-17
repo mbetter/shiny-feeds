@@ -5,7 +5,7 @@ $def with (posts)
     <link href="./static/hollow.css" type="text/css" rel="stylesheet">
   </head>
   <body>
-	<h1 id="logo"><a href="/">Shiny Feeds</a></h1>
+	<div id="topbar"><h1 id="logo"><a href="/">Shiny Feeds</a></h1></div>
    $for postrow in posts:
        <div class="post" id="t$postrow.id">
        <h1 class="post-header">$postrow.title</h1>
