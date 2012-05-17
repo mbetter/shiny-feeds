@@ -8,19 +8,15 @@ body {
 #topbar {
     width: 100%;
     background: #447;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-
 }
 #logo {
     display: block;
     margin-bottom: 20px;
     margin-top: 0px;
-    width: 940px;
+    max-width: 940px;
     margin-left: auto;
     margin-right: auto;
-    padding: 5px 0px 5px 12px;
+    padding: 5px 10px 5px 10px;
 }
 #logo a {
     font-family: sans-serif;
@@ -28,14 +24,17 @@ body {
     text-decoration: none;
     color: #f2f2f2;
 }
+#content {
+    max-width: 940px;
+    padding: 0px 10px 0px 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .post {
     display: block;
-    max-width: 900px;
     padding: 0px 10px 5px 10px;
     margin-top: 0px;
     margin-bottom: 15px;
-    margin-left: auto;
-    margin-right: auto;
     border-style: dashed;
     border-color: #CCC;
     border-width: 2px;
@@ -55,5 +54,3 @@ body {
     margin-bottom: 0px;
     margin-top: 10px;
 }
-
-

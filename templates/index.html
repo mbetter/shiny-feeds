@@ -2,16 +2,18 @@ $def with (posts)
 <html>
   <head>
     <title>Shiny Feeds</title>
-    <link href="./static/hollow.css" type="text/css" rel="stylesheet">
+    <link href="./static/centered.css" type="text/css" rel="stylesheet">
   </head>
   <body>
 	<div id="topbar"><h1 id="logo"><a href="/">Shiny Feeds</a></h1></div>
+    <div id="content">
    $for postrow in posts:
        <div class="post" id="t$postrow.id">
        <h1 class="post-header">$postrow.title</h1>
        <div class="post-body">$:markdown(postrow.post) </div>
        <span class="post-info">Posted by <a href="./$postrow.page">$postrow.page</a>, $:datestr(postrow.time)</span>
        </div>
+    </div>
   </body>
 </html>
 
